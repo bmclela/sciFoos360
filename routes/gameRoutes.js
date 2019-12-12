@@ -1,0 +1,31 @@
+const mongoose = require('mongoose');
+const Game = mongoose.model('game');
+
+module.exports = app => {
+  app.get('/api/games', async (req, res) => {
+    const games = await Game.find();
+    res.send(games);
+  });
+
+  app.post('/api/games', async (req, res) => {
+    const { gameId, winner1, winner2, loser1, loser2, date } = req.body;
+
+    const game = new Game({
+      gameId,
+      winner1,
+      winner2,
+      loser1,
+      loser2,
+      date
+    });
+
+    console.log(game);
+
+    try {
+      await game.save();
+      res.send(game);
+    } catch (err) {
+      res.send(422).send(err);
+    }
+  });
+};
