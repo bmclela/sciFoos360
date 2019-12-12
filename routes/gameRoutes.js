@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
-const Game = mongoose.model('game');
+const mongoose = require("mongoose");
+const Game = mongoose.model("game");
+//const gameLogic = require("../logic/rankLogic");
 
 module.exports = app => {
-  app.get('/api/games', async (req, res) => {
+  app.get("/api/games", async (req, res) => {
     const games = await Game.find();
     res.send(games);
   });
 
-  app.post('/api/games', async (req, res) => {
-    const { gameId, winner1, winner2, loser1, loser2, date } = req.body;
+  app.post("/api/games", async (req, res) => {
+    const { gameId, winner1, winner2, loser1, loser2 } = req.body;
 
     const game = new Game({
       gameId,
@@ -16,10 +17,10 @@ module.exports = app => {
       winner2,
       loser1,
       loser2,
-      date
+      date: Date.now()
     });
 
-    console.log(game);
+    //gameLogic(game);
 
     try {
       await game.save();

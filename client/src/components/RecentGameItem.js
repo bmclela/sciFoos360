@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Collapse, ListGroup } from "react-bootstrap";
 
-const RecentGameItem = () => {
+const RecentGameItem = props => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -16,12 +16,16 @@ const RecentGameItem = () => {
             cursor: "pointer"
           }}
         >
-          <div style={{ textAlign: "center" }}>Player1 and Player2</div>
+          <div style={{ textAlign: "center" }}>
+            {props.winner1} and {props.winner2}
+          </div>
         </div>
         <Collapse in={open}>
           <div id="example-collapse-text">
             <div style={{ textAlign: "center" }}>beat</div>
-            <div style={{ textAlign: "center" }}>Player3 and Player4</div>
+            <div style={{ textAlign: "center" }}>
+              {props.loser1} and {props.loser2}
+            </div>
           </div>
         </Collapse>
       </ListGroup.Item>
