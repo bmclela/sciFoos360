@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Game = mongoose.model("game");
-//const gameLogic = require("../logic/rankLogic");
+const rankLogic = require("../logic/rankLogic");
 
 module.exports = app => {
   app.get("/api/games", async (req, res) => {
@@ -20,7 +20,7 @@ module.exports = app => {
       date: Date.now()
     });
 
-    //gameLogic(game);
+    rankLogic(game);
 
     try {
       await game.save();
