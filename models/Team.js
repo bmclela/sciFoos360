@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const teamSchema = new Schema({
@@ -8,4 +8,4 @@ const teamSchema = new Schema({
   losses: Number
 });
 
-mongoose.model("team", teamSchema);
+mongoose.model('team', teamSchema);
