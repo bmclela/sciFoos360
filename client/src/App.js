@@ -14,6 +14,7 @@ import "./style/style.css";
 const App = props => {
   useEffect(() => {
     props.fetchGames();
+    props.fetchTeams();
   });
 
   return (

@@ -1,11 +1,11 @@
-import { FETCH_GAMES, ADD_GAME } from "../actions/types";
+import { UPDATE_TEAMS, FETCH_TEAMS } from "../actions/types";
 
 export default function(state = [], action) {
   switch (action.type) {
-    case FETCH_GAMES:
+    case UPDATE_TEAMS:
       return action.payload;
-    case ADD_GAME:
-      return [...state, action.payload];
+    case FETCH_TEAMS:
+      return action.payload;
     default:
       return state;
   }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const playerSchema = new Schema({
-  playerName: String,
+  name: String,
   elo: Number,
   wins: Number,
   losses: Number

@@ -1,8 +1,8 @@
-import React from 'react';
-import RankCard from './RankCard';
-import { Row, Col } from 'react-bootstrap';
+import React from "react";
+import RankCard from "./RankCard";
+import { Row, Col } from "react-bootstrap";
 
-import '../style/style.css';
+import "../style/style.css";
 
 class RankDisplay extends React.Component {
   render() {
@@ -13,9 +13,9 @@ class RankDisplay extends React.Component {
             <div className="second">
               <RankCard
                 style={{ marginBottom: 40 }}
-                name={this.props.name2}
-                elo={this.props.elo2}
-                winLoss={this.props.winLoss2}
+                name={"this.props.item2.name"}
+                elo={"this.props.item2.elo"}
+                winLoss={"this.props.item2.wins / this.props.item2.losses"}
                 namesize={this.props.namesize}
                 place={2}
                 size={50}
