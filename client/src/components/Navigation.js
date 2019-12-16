@@ -21,11 +21,11 @@ class Navigation extends React.Component {
               <LinkContainer to='/' exact>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/teams'>
-                <Nav.Link>Teams</Nav.Link>
-              </LinkContainer>
               <LinkContainer to='/players'>
                 <Nav.Link>Players</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/teams'>
+                <Nav.Link>Teams</Nav.Link>
               </LinkContainer>
               {/* <LinkContainer to="/tournament">
                 <Nav.Link>Tournament</Nav.Link>
