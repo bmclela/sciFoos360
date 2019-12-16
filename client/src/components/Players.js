@@ -1,35 +1,51 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import RankDisplay from '../components/RankDisplay';
-import RankList from '../components/RankList';
+import RankListItem from '../components/RankListItem';
+import { ListGroup } from 'react-bootstrap';
 
-class Players extends React.Component {
-  render() {
+const Players = props => {
+  const playerList = props.players
+    .filter(player => player.wins || player.losses)
+    .sort((player1, player2) => (player1.elo < player2.elo ? 1 : -1));
+
+  const displayPlayers = playerList.map((player, index) => {
+    let winLoss = 0;
+    if (player.losses === 0) {
+      winLoss = 100;
+    } else {
+      winLoss = Math.round((player.wins / (player.losses + player.wins)) * 100);
+    }
     return (
-      <div
-        style={{
-          marginRight: 100,
-          marginLeft: 100,
-          marginTop: 50,
-          marginBottom: 100
-        }}
-      >
-        <RankDisplay
-          name1={'Player1'}
-          name2={'Player2'}
-          name3={'Player3'}
-          elo1={1127}
-          elo2={1095}
-          elo3={1008}
-          winLoss1={80}
-          winLoss2={75}
-          winLoss3={72}
-          namesize={30}
-        />
-        <RankList />
-      </div>
+      <RankListItem
+        key={player._id}
+        rankNumber={index + 1}
+        name={player.name}
+        elo={Math.round(player.elo)}
+        winLoss={winLoss}
+      />
     );
-  }
-}
+  });
 
-export default Players;
+  return (
+    <div
+      style={{
+        marginRight: 100,
+        marginLeft: 100,
+        marginTop: 50,
+        marginBottom: 100
+      }}
+    >
+      <div style={{ height: 100 }}>
+        <h1 style={{ textAlign: 'center', color: 'white' }}>Player Rankings</h1>
+      </div>
+      <ListGroup>{displayPlayers}</ListGroup>
+    </div>
+  );
+};
+
+const mapStateToProps = state => {
+  return { players: state.players };
+};
+
+export default connect(mapStateToProps)(Players);

@@ -1,8 +1,8 @@
-import React from "react";
-import { ListGroup } from "react-bootstrap";
-import { connect } from "react-redux";
+import React from 'react';
+import { ListGroup } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-import RecentGameItem from "./RecentGameItem";
+import RecentGameItem from './RecentGameItem';
 
 const RecentGames = props => {
   const displayGames = props.games.map(game => {
@@ -27,9 +27,9 @@ const RecentGames = props => {
       >
         <h3
           style={{
-            textAlign: "center",
-            overflow: "hidden",
-            whiteSpace: "nowrap"
+            textAlign: 'center',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap'
           }}
         >
           Recent Games

@@ -9,7 +9,7 @@ class RankListItem extends React.Component {
           backgroundColor: 'black',
           color: 'white',
           marginBottom: 10,
-          background: "rgba(255, 255, 255, 0.3)"
+          background: 'rgba(255, 255, 255, 0.3)'
         }}
       >
         <div

@@ -1,17 +1,31 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import RankDisplay from "../components/RankDisplay";
-import RankList from "../components/RankList";
+import RankListItem from '../components/RankListItem';
+import { ListGroup } from 'react-bootstrap';
 
 const Teams = props => {
-  useEffect = () => {
-    const teamList = props.teams.sort((team1, team2) =>
-      team1.elo < team2.elo ? 1 : -1
-    );
-  };
+  const teamList = props.teams.sort((team1, team2) =>
+    team1.elo < team2.elo ? 1 : -1
+  );
 
-  console.log(teamList);
+  const displayTeams = teamList.map((team, index) => {
+    let winLoss = 0;
+    if (team.losses === 0) {
+      winLoss = 100;
+    } else {
+      winLoss = Math.round((team.wins / (team.losses + team.wins)) * 100);
+    }
+    return (
+      <RankListItem
+        key={team._id}
+        rankNumber={index + 1}
+        name={team.name}
+        elo={Math.round(team.elo)}
+        winLoss={winLoss}
+      />
+    );
+  });
 
   return (
     <div
@@ -22,22 +36,10 @@ const Teams = props => {
         marginBottom: 100
       }}
     >
-      <RankDisplay
-        item1={teamList[0]}
-        item2={teamList[1]}
-        item3={teamList[2]}
-        name1={"Player1 Player2"}
-        name2={"Player3 Player 4"}
-        name3={"Player5 Player 6"}
-        elo1={1127}
-        elo2={1095}
-        elo3={1008}
-        winLoss1={80}
-        winLoss2={75}
-        winLoss3={72}
-        namesize={20}
-      />
-      <RankList />
+      <div style={{ height: 100 }}>
+        <h1 style={{ textAlign: 'center', color: 'white' }}>Team Rankings</h1>
+      </div>
+      <ListGroup>{displayTeams}</ListGroup>
     </div>
   );
 };

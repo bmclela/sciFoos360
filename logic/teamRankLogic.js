@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Team = mongoose.model("team");
+const mongoose = require('mongoose');
+const Team = mongoose.model('team');
 
 module.exports = async game => {
   let getList = await Team.find();
@@ -7,7 +7,7 @@ module.exports = async game => {
 
   // Get the name of the team by putting player names in alphabetical order
   const getTeamName = (player1, player2) => {
-    let teamName = "";
+    let teamName = '';
     if (player1 <= player2) {
       teamName = `${player1} and ${player2}`;
     } else {
@@ -50,7 +50,7 @@ module.exports = async game => {
 
   // Calculate team elos
   const calculateElo = (team1, team2) => {
-    const K = 50;
+    const K = 100;
     const probability1 =
       1.0 / (1.0 + Math.pow(10, (team2.elo - team1.elo) / 400));
     const probability2 =
@@ -66,7 +66,7 @@ module.exports = async game => {
   // Update teams in database
   const updateTeams = async (team1, team2) => {
     if (findTeam(team1)) {
-      await team1.findOneAndUpdate(
+      await Team.findOneAndUpdate(
         { name: team1.name },
         { elo: team1.elo, wins: team1.wins, losses: team1.losses }
       );
@@ -74,7 +74,7 @@ module.exports = async game => {
       await team1.save();
     }
     if (findTeam(team2)) {
-      await team2.findOneAndUpdate(
+      await Team.findOneAndUpdate(
         { name: team2.name },
         { elo: team2.elo, wins: team2.wins, losses: team2.losses }
       );
@@ -84,6 +84,4 @@ module.exports = async game => {
   };
 
   updateTeams(team1, team2);
-
-  //Get new list of teams to return
 };
