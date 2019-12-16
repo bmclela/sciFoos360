@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Button, Modal, Row, Col, Form } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React, { useState } from "react";
+import { Button, Modal, Row, Col, Form } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 const AddGame = props => {
   const [show, setShow] = useState(false);
@@ -9,10 +9,10 @@ const AddGame = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [winner1, setWinner1] = useState('');
-  const [winner2, setWinner2] = useState('');
-  const [loser1, setLoser1] = useState('');
-  const [loser2, setLoser2] = useState('');
+  const [winner1, setWinner1] = useState("");
+  const [winner2, setWinner2] = useState("");
+  const [loser1, setLoser1] = useState("");
+  const [loser2, setLoser2] = useState("");
 
   const selectWinner1 = e => {
     setWinner1({ winner1: e.target.value });
@@ -29,10 +29,10 @@ const AddGame = props => {
 
   const handleSubmit = () => {
     if (
-      winner1.winner1 === '' ||
-      winner2.winner2 === '' ||
-      loser1.loser1 === '' ||
-      loser2.loser2 === '' ||
+      winner1.winner1 === "" ||
+      winner2.winner2 === "" ||
+      loser1.loser1 === "" ||
+      loser2.loser2 === "" ||
       winner1.winner1 === winner2.winner2 ||
       winner2.winner2 === loser1.loser1 ||
       loser1.loser1 === loser2.loser2 ||
@@ -41,7 +41,7 @@ const AddGame = props => {
       winner2.winner2 === loser1.loser1 ||
       winner2.winner2 === loser2.loser2
     ) {
-      console.log('Invalid Input');
+      console.log("Invalid Input");
     } else {
       props.addGame({
         winner1: winner1.winner1,
@@ -53,24 +53,26 @@ const AddGame = props => {
     }
   };
 
+  const playerList = props.players.map(player => {
+    return <option key={player._id}>{player.name}</option>;
+  });
+
   return (
     <div>
-      <Button variant='secondary' onClick={handleShow}>
+      <Button id="addGameButton" variant="secondary" onClick={handleShow}>
         Add Game
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header
-          style={{ backgroundColor: '#424242', color: 'white' }}
-          closeButton
-        >
+      <Modal show={show} onHide={handleClose} variant="secondary">
+        <Modal.Header style={{ backgroundColor: "#282828", color: "white" }}>
           <Modal.Title>New Game</Modal.Title>
         </Modal.Header>
         <Modal.Body
+          variant="secondary"
           style={{
-            textAlign: 'center',
-            backgroundColor: '#424242',
-            color: 'white'
+            textAlign: "center",
+            backgroundColor: "#282828",
+            color: "white"
           }}
         >
           <Row>
@@ -79,30 +81,22 @@ const AddGame = props => {
               <h3>Team</h3>
               <Form.Group>
                 <Form.Control
-                  as='select'
+                  as="select"
                   onChange={selectWinner1}
-                  defaultValue={'DEFAULT'}
+                  defaultValue={"DEFAULT"}
                 >
-                  <option value='DEFAULT' disabled hidden></option>
-                  <option>Ben</option>
-                  <option>Ryan</option>
-                  <option>Sam</option>
-                  <option>Grayson</option>
-                  <option>Tracey</option>
+                  <option value="DEFAULT" disabled hidden></option>
+                  {playerList}
                 </Form.Control>
               </Form.Group>
               <Form.Group>
                 <Form.Control
-                  as='select'
+                  as="select"
                   onChange={selectWinner2}
-                  defaultValue={'DEFAULT'}
+                  defaultValue={"DEFAULT"}
                 >
-                  <option value='DEFAULT' disabled hidden></option>
-                  <option>Ben</option>
-                  <option>Ryan</option>
-                  <option>Sam</option>
-                  <option>Grayson</option>
-                  <option>Tracey</option>
+                  <option value="DEFAULT" disabled hidden></option>
+                  {playerList}
                 </Form.Control>
               </Form.Group>
             </Col>
@@ -111,40 +105,32 @@ const AddGame = props => {
               <h3>Team</h3>
               <Form.Group>
                 <Form.Control
-                  as='select'
+                  as="select"
                   onChange={selectLoser1}
-                  defaultValue={'DEFAULT'}
+                  defaultValue={"DEFAULT"}
                 >
-                  <option value='DEFAULT' disabled hidden></option>
-                  <option>Ben</option>
-                  <option>Ryan</option>
-                  <option>Sam</option>
-                  <option>Grayson</option>
-                  <option>Tracey</option>
+                  <option value="DEFAULT" disabled hidden></option>
+                  {playerList}
                 </Form.Control>
               </Form.Group>
               <Form.Group>
                 <Form.Control
-                  as='select'
+                  as="select"
                   onChange={selectLoser2}
-                  defaultValue={'DEFAULT'}
+                  defaultValue={"DEFAULT"}
                 >
-                  <option value='DEFAULT' disabled hidden></option>
-                  <option>Ben</option>
-                  <option>Ryan</option>
-                  <option>Sam</option>
-                  <option>Grayson</option>
-                  <option>Tracey</option>
+                  <option value="DEFAULT" disabled hidden></option>
+                  {playerList}
                 </Form.Control>
               </Form.Group>
             </Col>
           </Row>
         </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: '#424242', color: 'white' }}>
-          <Button variant='secondary' onClick={handleClose}>
+        <Modal.Footer style={{ color: "white", backgroundColor: "#282828" }}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant='info' onClick={handleSubmit}>
+          <Button variant="info" onClick={handleSubmit}>
             Submit Game
           </Button>
         </Modal.Footer>
@@ -153,4 +139,8 @@ const AddGame = props => {
   );
 };
 
-export default connect(null, actions)(AddGame);
+const mapStateToProps = ({ players }) => {
+  return { players };
+};
+
+export default connect(mapStateToProps, actions)(AddGame);

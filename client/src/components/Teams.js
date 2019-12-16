@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import RankListItem from '../components/RankListItem';
-import { ListGroup } from 'react-bootstrap';
+import RankListItem from "../components/RankListItem";
+import { ListGroup } from "react-bootstrap";
 
 const Teams = props => {
   const teamList = props.teams.sort((team1, team2) =>
@@ -30,14 +30,15 @@ const Teams = props => {
   return (
     <div
       style={{
-        marginRight: 100,
-        marginLeft: 100,
+        marginRight: "auto",
+        marginLeft: "auto",
         marginTop: 50,
-        marginBottom: 100
+        marginBottom: 100,
+        width: "80%"
       }}
     >
       <div style={{ height: 100 }}>
-        <h1 style={{ textAlign: 'center', color: 'white' }}>Team Rankings</h1>
+        <h1 style={{ textAlign: "center", color: "white" }}>Team Rankings</h1>
       </div>
       <ListGroup>{displayTeams}</ListGroup>
     </div>

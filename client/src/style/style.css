@@ -35,4 +35,13 @@ body {
   .second {
     margin-top: 25px;
   }
+  #addGameButton {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  #champions {
+    padding-bottom: 140px;
+  }
 }
