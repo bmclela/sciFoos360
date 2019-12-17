@@ -26,23 +26,26 @@ module.exports = app => {
 
     await game.save();
 
-    teamRankLogic(game);
-    playerRankLogic(game);
+    await teamRankLogic(game);
+    await playerRankLogic(game);
 
     const getTeamsandPlayers = async () => {
       const newTeams = await Team.find();
       const newPlayers = await Player.find();
+      console.log(newPlayers);
       res.send({ newGame: game, newTeams, newPlayers });
     };
 
-    getTeamsandPlayers();
+    await getTeamsandPlayers();
   });
 
   app.delete("/api/games/:gameId", async (req, res) => {
     await Game.findOneAndRemove({ _id: req.params.gameId });
-    recalculate();
+    await recalculate();
     const games = await Game.find();
-    res.send(games);
+    const newTeams = await Team.find();
+    const newPlayers = await Player.find();
+    res.send({ games, newTeams, newPlayers });
   });
 
   app.get("/api/teams", async (req, res) => {

@@ -5,8 +5,9 @@ import {
   UPDATE_TEAMS,
   FETCH_TEAMS,
   ADD_PLAYER,
-  GET_PLAYERS,
-  DELETE_GAME
+  FETCH_PLAYERS,
+  DELETE_GAME,
+  UPDATE_PLAYERS
 } from "./types";
 
 export const fetchGames = () => async dispatch => {
@@ -16,13 +17,18 @@ export const fetchGames = () => async dispatch => {
 
 export const addGame = values => async dispatch => {
   const res = await axios.post("/api/games", values);
+  console.log(res.data.newPlayers);
   dispatch({ type: ADD_GAME, payload: res.data.newGame });
   dispatch({ type: UPDATE_TEAMS, payload: res.data.newTeams });
+  dispatch({ type: UPDATE_PLAYERS, payload: res.data.newPlayers });
 };
 
 export const deleteGame = ({ gameId }) => async dispatch => {
   const res = await axios.delete(`/api/games/${gameId}`);
-  dispatch({ type: DELETE_GAME, payload: res.data });
+  console.log(res.data);
+  dispatch({ type: DELETE_GAME, payload: res.data.games });
+  dispatch({ type: UPDATE_TEAMS, payload: res.data.newTeams });
+  dispatch({ type: UPDATE_PLAYERS, payload: res.data.newPlayers });
 };
 
 export const fetchTeams = () => async dispatch => {
@@ -37,5 +43,5 @@ export const addPlayer = values => async dispatch => {
 
 export const fetchPlayers = () => async dispatch => {
   const res = await axios.get("/api/players");
-  dispatch({ type: GET_PLAYERS, payload: res.data });
+  dispatch({ type: FETCH_PLAYERS, payload: res.data });
 };

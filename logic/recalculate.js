@@ -121,15 +121,29 @@ module.exports = async () => {
   });
 
   // Update players and teams in database using a loop and multiple update calls
-  console.log(teams);
-  console.log(players);
+  const updateTeams = async () => {
+    for (let i = 0; i < teams.length; i++) {
+      await Team.findOneAndUpdate(
+        { _id: teams[i].id },
+        { elo: teams[i].elo, wins: teams[i].wins, losses: teams[i].losses }
+      );
+    }
+  };
 
-  // const updateTeams = async teams => {
-  //   await Team.updateMany(
-  //     {},
-  //     { elo: teams.elo, wins: teams.wins, losses: teams.losses }
-  //   );
-  // };
+  updateTeams();
 
-  // updateTeams(team1, team2);
+  const updatePlayers = async () => {
+    for (let i = 0; i < players.length; i++) {
+      await Player.findOneAndUpdate(
+        { _id: players[i].id },
+        {
+          elo: players[i].elo,
+          wins: players[i].wins,
+          losses: players[i].losses
+        }
+      );
+    }
+  };
+
+  updatePlayers();
 };
