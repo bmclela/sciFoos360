@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Team = mongoose.model('team');
+const mongoose = require("mongoose");
+const Team = mongoose.model("team");
 
 module.exports = async game => {
   let getList = await Team.find();
@@ -7,7 +7,7 @@ module.exports = async game => {
 
   // Get the name of the team by putting player names in alphabetical order
   const getTeamName = (player1, player2) => {
-    let teamName = '';
+    let teamName = "";
     if (player1 <= player2) {
       teamName = `${player1} and ${player2}`;
     } else {
@@ -83,5 +83,5 @@ module.exports = async game => {
     }
   };
 
-  updateTeams(team1, team2);
+  await updateTeams(team1, team2);
 };

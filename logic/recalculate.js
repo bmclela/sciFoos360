@@ -145,5 +145,5 @@ module.exports = async () => {
     }
   };
 
-  updatePlayers();
+  await updatePlayers();
 };

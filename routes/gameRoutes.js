@@ -32,8 +32,7 @@ module.exports = app => {
     const getTeamsandPlayers = async () => {
       const newTeams = await Team.find();
       const newPlayers = await Player.find();
-      console.log(newPlayers);
-      res.send({ newGame: game, newTeams, newPlayers });
+      await res.send({ newGame: game, newTeams, newPlayers });
     };
 
     await getTeamsandPlayers();
@@ -45,7 +44,7 @@ module.exports = app => {
     const games = await Game.find();
     const newTeams = await Team.find();
     const newPlayers = await Player.find();
-    res.send({ games, newTeams, newPlayers });
+    await res.send({ games, newTeams, newPlayers });
   });
 
   app.get("/api/teams", async (req, res) => {

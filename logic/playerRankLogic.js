@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Player = mongoose.model('player');
+const mongoose = require("mongoose");
+const Player = mongoose.model("player");
 
 module.exports = async game => {
   let getList = await Player.find();
@@ -61,5 +61,5 @@ module.exports = async game => {
     );
   };
 
-  updatePlayers(winner1, winner2, loser1, loser2);
+  await updatePlayers(winner1, winner2, loser1, loser2);
 };
