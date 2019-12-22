@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import React, { useState } from 'react';
+import { Button, Modal, Form, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const AddPlayer = props => {
   const [show, setShow] = useState(false);
@@ -9,7 +9,9 @@ const AddPlayer = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [name, setName] = useState("");
+  const [error, setError] = useState(false);
+
+  const [name, setName] = useState('');
 
   const newPlayer = e => {
     setName({ name: e.target.value });
@@ -22,47 +24,102 @@ const AddPlayer = props => {
         exist = true;
       }
     });
-    if (name.name !== "" && !exist) {
+    if (!name.name) {
+      setError('noInput');
+    } else if (exist) {
+      setError('exists');
+    } else {
       props.addPlayer({
         name: name.name
       });
       handleClose();
-    } else {
-      console.log("Invalid Input");
     }
+  };
+
+  const showPlayers = () => {
+    return props.players
+      .sort((a, b) => {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase();
+        return nameA < nameB ? -1 : 1;
+      })
+      .map(player => {
+        return (
+          <ListGroupItem
+            style={{
+              backgroundColor: 'black',
+              color: 'white',
+              background: 'rgba(255, 255, 255, 0.3)'
+            }}
+            variant='dark'
+            key={player._id}
+          >
+            {player.name}
+          </ListGroupItem>
+        );
+      });
+  };
+
+  const ShowErrorMessage = () => {
+    if (error === 'exists') {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return (
+        <div style={{ color: 'red', marginTop: '10px' }}>
+          Player already exists
+        </div>
+      );
+    } else if (error === 'noInput') {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+
+      return (
+        <div style={{ color: 'red', marginTop: '10px' }}>Enter a name</div>
+      );
+    } else return null;
   };
 
   return (
     <div>
-      <Button variant="secondary" onClick={handleShow}>
+      <Button variant='secondary' onClick={handleShow}>
         Add Player
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="sm">
-        <Modal.Header style={{ backgroundColor: "#282828", color: "white" }}>
-          <Modal.Title>New Player</Modal.Title>
-        </Modal.Header>
+      <Modal show={show} onHide={handleClose} size='sm'>
         <Modal.Body
           style={{
-            textAlign: "center",
-            backgroundColor: "#282828",
-            color: "white"
+            textAlign: 'center',
+            backgroundColor: '#282828',
+            color: 'white'
           }}
         >
+          <ListGroup>{showPlayers()}</ListGroup>
+
+          <ShowErrorMessage />
+
           <Form.Control
-            type="text"
-            placeholder="Enter player name"
+            style={{ marginTop: '15px', marginBottom: '15px' }}
+            type='text'
+            placeholder='Enter new player name'
             onChange={newPlayer}
           />
-        </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: "#282828", color: "white" }}>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant='secondary'
+            onClick={handleClose}
+            style={{ float: 'left' }}
+          >
             Close
           </Button>
-          <Button variant="info" onClick={handleSubmit}>
+          <Button
+            variant='info'
+            onClick={handleSubmit}
+            style={{ float: 'right' }}
+          >
             Submit Player
           </Button>
-        </Modal.Footer>
+        </Modal.Body>
       </Modal>
     </div>
   );

@@ -1,4 +1,4 @@
-import { ADD_PLAYER, FETCH_PLAYERS, UPDATE_PLAYERS } from "../actions/types";
+import { ADD_PLAYER, FETCH_PLAYERS, UPDATE_PLAYERS } from '../actions/types';
 
 export default function(state = [], action) {
   switch (action.type) {

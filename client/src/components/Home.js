@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import RecentGames from '../components/RecentGames';
 import Champions from '../components/Champions';
+import Welcome from '../components/Welcome';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <div style={{ margin: 40, color: 'white' }}>
+const Home = props => {
+  const [loaded, setLoaded] = useState('loading');
+
+  useEffect(() => {
+    if (props.games[0]) {
+      setLoaded('loaded');
+    } else setLoaded('noData');
+  }, [props.games]);
+
+  const displayHome = () => {
+    if (loaded === 'loaded') {
+      return (
         <Row>
           <Col lg={9}>
             <Champions />
@@ -16,9 +26,19 @@ class Home extends React.Component {
             <RecentGames />
           </Col>
         </Row>
-      </div>
-    );
-  }
-}
+      );
+    } else if (loaded === 'loading') {
+      return;
+    } else {
+      return <Welcome />;
+    }
+  };
 
-export default Home;
+  return <div style={{ margin: 40, color: 'white' }}>{displayHome()}</div>;
+};
+
+const mapStateToProps = ({ games }) => {
+  return { games };
+};
+
+export default connect(mapStateToProps)(Home);

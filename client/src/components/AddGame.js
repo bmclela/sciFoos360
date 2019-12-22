@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal, Row, Col, Form } from "react-bootstrap";
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import React, { useState } from 'react';
+import { Button, Modal, Row, Col, Form } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const AddGame = props => {
   const [show, setShow] = useState(false);
@@ -9,10 +9,12 @@ const AddGame = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [winner1, setWinner1] = useState("");
-  const [winner2, setWinner2] = useState("");
-  const [loser1, setLoser1] = useState("");
-  const [loser2, setLoser2] = useState("");
+  const [error, setError] = useState(false);
+
+  const [winner1, setWinner1] = useState('');
+  const [winner2, setWinner2] = useState('');
+  const [loser1, setLoser1] = useState('');
+  const [loser2, setLoser2] = useState('');
 
   const selectWinner1 = e => {
     setWinner1({ winner1: e.target.value });
@@ -29,10 +31,13 @@ const AddGame = props => {
 
   const handleSubmit = () => {
     if (
-      winner1.winner1 === "" ||
-      winner2.winner2 === "" ||
-      loser1.loser1 === "" ||
-      loser2.loser2 === "" ||
+      !winner1.winner1 ||
+      !winner2.winner2 ||
+      !loser1.loser1 ||
+      !loser2.loser2
+    ) {
+      setError('missingInput');
+    } else if (
       winner1.winner1 === winner2.winner2 ||
       winner2.winner2 === loser1.loser1 ||
       loser1.loser1 === loser2.loser2 ||
@@ -41,7 +46,7 @@ const AddGame = props => {
       winner2.winner2 === loser1.loser1 ||
       winner2.winner2 === loser2.loser2
     ) {
-      console.log("Invalid Input");
+      setError('matchingNames');
     } else {
       props.addGame({
         winner1: winner1.winner1,
@@ -53,87 +58,118 @@ const AddGame = props => {
     }
   };
 
-  const playerList = props.players.map(player => {
-    return <option key={player._id}>{player.name}</option>;
-  });
+  const playerList = props.players
+    .sort((a, b) => {
+      let nameA = a.name.toUpperCase();
+      let nameB = b.name.toUpperCase();
+      return nameA < nameB ? -1 : 1;
+    })
+    .map(player => {
+      return <option key={player._id}>{player.name}</option>;
+    });
+
+  const ShowErrorMessage = () => {
+    if (error === 'missingInput') {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return (
+        <div style={{ color: 'red', marginTop: '10px' }}>Missing players</div>
+      );
+    } else if (error === 'matchingNames') {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+
+      return (
+        <div style={{ color: 'red', marginTop: '10px' }}>
+          Cannot add the same player twice
+        </div>
+      );
+    } else return null;
+  };
 
   return (
-    <div>
-      <Button id="addGameButton" variant="secondary" onClick={handleShow}>
+    <div style={{ borderRadius: '25px' }}>
+      <Button id='addGameButton' variant='secondary' onClick={handleShow}>
         Add Game
       </Button>
 
-      <Modal show={show} onHide={handleClose} variant="secondary">
-        <Modal.Header style={{ backgroundColor: "#282828", color: "white" }}>
-          <Modal.Title>New Game</Modal.Title>
-        </Modal.Header>
+      <Modal show={show} onHide={handleClose} variant='secondary'>
         <Modal.Body
-          variant="secondary"
+          variant='secondary'
           style={{
-            textAlign: "center",
-            backgroundColor: "#282828",
-            color: "white"
+            textAlign: 'center',
+            backgroundColor: '#282828',
+            color: 'white'
           }}
         >
           <Row>
             <Col>
-              <h3>Winning</h3>
-              <h3>Team</h3>
-              <Form.Group>
+              <h4>Winning</h4>
+              <h4>Team</h4>
+              <Form.Group variant='secondary'>
                 <Form.Control
-                  as="select"
+                  as='select'
                   onChange={selectWinner1}
-                  defaultValue={"DEFAULT"}
+                  defaultValue={'DEFAULT'}
                 >
-                  <option value="DEFAULT" disabled hidden></option>
+                  <option value='DEFAULT' disabled hidden></option>
                   {playerList}
                 </Form.Control>
               </Form.Group>
               <Form.Group>
                 <Form.Control
-                  as="select"
+                  as='select'
                   onChange={selectWinner2}
-                  defaultValue={"DEFAULT"}
+                  defaultValue={'DEFAULT'}
                 >
-                  <option value="DEFAULT" disabled hidden></option>
+                  <option value='DEFAULT' disabled hidden></option>
                   {playerList}
                 </Form.Control>
               </Form.Group>
             </Col>
             <Col>
-              <h3>Losing</h3>
-              <h3>Team</h3>
+              <h4>Losing</h4>
+              <h4>Team</h4>
               <Form.Group>
                 <Form.Control
-                  as="select"
+                  as='select'
                   onChange={selectLoser1}
-                  defaultValue={"DEFAULT"}
+                  defaultValue={'DEFAULT'}
                 >
-                  <option value="DEFAULT" disabled hidden></option>
+                  <option value='DEFAULT' disabled hidden></option>
                   {playerList}
                 </Form.Control>
               </Form.Group>
               <Form.Group>
                 <Form.Control
-                  as="select"
+                  as='select'
                   onChange={selectLoser2}
-                  defaultValue={"DEFAULT"}
+                  defaultValue={'DEFAULT'}
                 >
-                  <option value="DEFAULT" disabled hidden></option>
+                  <option value='DEFAULT' disabled hidden></option>
                   {playerList}
                 </Form.Control>
               </Form.Group>
             </Col>
           </Row>
-        </Modal.Body>
-        <Modal.Footer style={{ color: "white", backgroundColor: "#282828" }}>
-          <Button variant="secondary" onClick={handleClose}>
+          <ShowErrorMessage />
+          <Button
+            variant='secondary'
+            onClick={handleClose}
+            style={{ float: 'left' }}
+          >
             Close
           </Button>
-          <Button variant="info" onClick={handleSubmit}>
+          <Button
+            variant='info'
+            onClick={handleSubmit}
+            style={{ float: 'right' }}
+          >
             Submit Game
           </Button>
-        </Modal.Footer>
+        </Modal.Body>
       </Modal>
     </div>
   );

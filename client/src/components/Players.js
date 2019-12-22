@@ -1,48 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import RankListItem from "../components/RankListItem";
-import { ListGroup } from "react-bootstrap";
+import RankDisplay from './RankDisplay';
 
 const Players = props => {
-  const playerList = props.players
-    .filter(player => player.wins || player.losses)
-    .sort((player1, player2) => (player1.elo < player2.elo ? 1 : -1));
-
-  const displayPlayers = playerList.map((player, index) => {
-    let winLoss = 0;
-    if (player.losses === 0) {
-      winLoss = 100;
-    } else {
-      winLoss = Math.round((player.wins / (player.losses + player.wins)) * 100);
-    }
-    return (
-      <RankListItem
-        key={player._id}
-        rankNumber={index + 1}
-        name={player.name}
-        elo={Math.round(player.elo)}
-        winLoss={winLoss}
-      />
-    );
-  });
-
-  return (
-    <div
-      style={{
-        marginRight: "auto",
-        marginLeft: "auto",
-        marginTop: 50,
-        marginBottom: 100,
-        width: "80%"
-      }}
-    >
-      <div style={{ height: 100 }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>Player Rankings</h1>
-      </div>
-      <ListGroup>{displayPlayers}</ListGroup>
-    </div>
-  );
+  return <RankDisplay opponent={props.players} title='Player' />;
 };
 
 const mapStateToProps = state => {
