@@ -92,7 +92,8 @@ const AddPlayer = props => {
           style={{
             textAlign: 'center',
             backgroundColor: '#282828',
-            color: 'white'
+            color: 'white',
+            border: '1px solid'
           }}
         >
           <ListGroup>{showPlayers()}</ListGroup>
@@ -106,7 +107,7 @@ const AddPlayer = props => {
             onChange={newPlayer}
           />
           <Button
-            variant='secondary'
+            variant='outline-secondary'
             onClick={handleClose}
             style={{ float: 'left' }}
           >

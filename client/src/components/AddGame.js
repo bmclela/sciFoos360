@@ -101,7 +101,8 @@ const AddGame = props => {
           style={{
             textAlign: 'center',
             backgroundColor: '#282828',
-            color: 'white'
+            color: 'white',
+            border: '1px solid'
           }}
         >
           <Row>
@@ -156,7 +157,7 @@ const AddGame = props => {
           </Row>
           <ShowErrorMessage />
           <Button
-            variant='secondary'
+            variant='outline-secondary'
             onClick={handleClose}
             style={{ float: 'left' }}
           >

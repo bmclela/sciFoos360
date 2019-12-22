@@ -38,7 +38,8 @@ const DeleteGame = props => {
           style={{
             textAlign: 'center',
             backgroundColor: '#282828',
-            color: 'white'
+            color: 'white',
+            border: '1px solid'
           }}
         >
           <div>Are you sure you want to delete this game?</div>
@@ -48,7 +49,7 @@ const DeleteGame = props => {
               margin: 'auto',
               width: '80%',
               borderColor: '#6c757d',
-              backgroundColor: '#282828',
+              backgroundColor: '#6c757d',
               marginBottom: '30px'
             }}
           >
@@ -63,7 +64,7 @@ const DeleteGame = props => {
             </Card.Body>
           </Card>
           <Button
-            variant='secondary'
+            variant='outline-secondary'
             onClick={handleClose}
             style={{ float: 'left' }}
           >
