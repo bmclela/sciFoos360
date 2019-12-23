@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import RankListItem from '../components/RankListItem';
+import RankListItem from "../components/RankListItem";
 
 const Opponents = props => {
   const displayOpponents = props.opponent
@@ -12,11 +12,11 @@ const Opponents = props => {
     })
     .sort((opponent1, opponent2) => (opponent1.elo < opponent2.elo ? 1 : -1))
     .map((opponent, index) => {
-      let winLoss = 0;
+      let winPercent = 0;
       if (opponent.losses === 0) {
-        winLoss = 100;
+        winPercent = 100;
       } else {
-        winLoss = Math.round(
+        winPercent = Math.round(
           (opponent.wins / (opponent.losses + opponent.wins)) * 100
         );
       }
@@ -26,7 +26,8 @@ const Opponents = props => {
           rankNumber={index + 1}
           name={opponent.name}
           elo={Math.round(opponent.elo)}
-          winLoss={winLoss}
+          winPercent={winPercent}
+          winLoss={opponent.wins + " / " + opponent.losses}
         />
       );
     });
@@ -34,62 +35,70 @@ const Opponents = props => {
   return (
     <div
       style={{
-        marginRight: 'auto',
-        marginLeft: 'auto',
+        marginRight: "40px",
+        marginLeft: "40px",
         marginTop: 50,
-        marginBottom: 100,
-        width: '80%'
+        marginBottom: 100
       }}
     >
       <div style={{ height: 100 }}>
-        <h1 style={{ textAlign: 'center', color: 'white' }}>
+        <h1 style={{ textAlign: "center", color: "white" }}>
           {props.title} Rankings
         </h1>
       </div>
       <div
         style={{
-          color: 'white',
+          color: "white",
           marginBottom: 10,
-          fontWeight: 'bold',
-          paddingLeft: '1.25rem',
-          paddingRight: '1.25rem'
+          fontWeight: "bold",
+          paddingLeft: "1.25rem",
+          paddingRight: "1.25rem"
         }}
       >
         <div
           style={{
-            display: 'inline-block',
-            textAlign: 'center',
-            width: 25 + '%'
+            display: "inline-block",
+            textAlign: "center",
+            width: 20 + "%"
           }}
         >
           Rank
         </div>
         <div
           style={{
-            display: 'inline-block',
-            textAlign: 'center',
-            width: 25 + '%'
+            display: "inline-block",
+            textAlign: "center",
+            width: 20 + "%"
           }}
         >
           {props.title}
         </div>
         <div
           style={{
-            display: 'inline-block',
-            textAlign: 'center',
-            width: 25 + '%'
+            display: "inline-block",
+            textAlign: "center",
+            width: 20 + "%"
           }}
         >
           Elo
         </div>
         <div
           style={{
-            display: 'inline-block',
-            textAlign: 'center',
-            width: 25 + '%'
+            display: "inline-block",
+            textAlign: "center",
+            width: 20 + "%"
           }}
         >
           Win Rate
+        </div>
+        <div
+          style={{
+            display: "inline-block",
+            textAlign: "center",
+            width: 20 + "%"
+          }}
+        >
+          Win / Loss
         </div>
       </div>
       {displayOpponents}
