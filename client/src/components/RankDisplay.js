@@ -56,46 +56,46 @@ const Opponents = props => {
         }}
       >
         <div
+          id="rank"
           style={{
             display: "inline-block",
-            textAlign: "center",
-            width: 20 + "%"
+            textAlign: "center"
           }}
         >
           Rank
         </div>
         <div
+          id="opponent"
           style={{
             display: "inline-block",
-            textAlign: "center",
-            width: 20 + "%"
+            textAlign: "center"
           }}
         >
           {props.title}
         </div>
         <div
+          id="elo"
           style={{
             display: "inline-block",
-            textAlign: "center",
-            width: 20 + "%"
+            textAlign: "center"
           }}
         >
           Elo
         </div>
         <div
+          id="winRate"
           style={{
             display: "inline-block",
-            textAlign: "center",
-            width: 20 + "%"
+            textAlign: "center"
           }}
         >
           Win Rate
         </div>
         <div
+          id="winLoss"
           style={{
             display: "inline-block",
-            textAlign: "center",
-            width: 20 + "%"
+            textAlign: "center"
           }}
         >
           Win / Loss

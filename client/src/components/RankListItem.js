@@ -14,46 +14,46 @@ class RankListItem extends React.Component {
           }}
         >
           <div
+            id="rank"
             style={{
               display: "inline-block",
-              textAlign: "center",
-              width: 20 + "%"
+              textAlign: "center"
             }}
           >
             {this.props.rankNumber}
           </div>
           <div
+            id="opponent"
             style={{
               display: "inline-block",
-              textAlign: "center",
-              width: 20 + "%"
+              textAlign: "center"
             }}
           >
             {this.props.name}
           </div>
           <div
+            id="elo"
             style={{
               display: "inline-block",
-              textAlign: "center",
-              width: 20 + "%"
+              textAlign: "center"
             }}
           >
             {this.props.elo}
           </div>
           <div
+            id="winRate"
             style={{
               display: "inline-block",
-              textAlign: "center",
-              width: 20 + "%"
+              textAlign: "center"
             }}
           >
             {this.props.winPercent}%
           </div>
           <div
+            id="winLoss"
             style={{
               display: "inline-block",
-              textAlign: "center",
-              width: 20 + "%"
+              textAlign: "center"
             }}
           >
             {this.props.winLoss}
