@@ -37,12 +37,13 @@ const Opponents = props => {
       style={{
         marginRight: "40px",
         marginLeft: "40px",
-        marginTop: 50,
-        marginBottom: 100
+        marginTop: 50
       }}
     >
-      <div style={{ height: 100 }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>
+      <div>
+        <h1
+          style={{ textAlign: "center", color: "white", marginBottom: "50px" }}
+        >
           {props.title} Rankings
         </h1>
       </div>
