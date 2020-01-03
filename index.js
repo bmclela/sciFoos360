@@ -33,6 +33,11 @@ new CronJob(
   'America/Los_Angeles'
 );
 
+let http = require('http');
+setInterval(function() {
+  http.get('http://scifoos360.herokuapp.com');
+}, 300000); // every 5 minutes (300000)
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
