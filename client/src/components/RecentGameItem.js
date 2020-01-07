@@ -5,6 +5,62 @@ import DeleteGame from "./DeleteGame";
 const RecentGameItem = props => {
   const [open, setOpen] = useState(false);
 
+  const displayDate = date => {
+    let msec = Date.parse(date);
+    date = new Date(msec);
+    let monthNumber = date.getMonth();
+    let day = date.getDate() + 1;
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let month;
+    let ampm = "AM";
+    switch (monthNumber) {
+      case 0:
+        month = "Jan";
+        break;
+      case 1:
+        month = "Feb";
+        break;
+      case 2:
+        month = "March";
+        break;
+      case 3:
+        month = "April";
+        break;
+      case 4:
+        month = "May";
+        break;
+      case 5:
+        month = "June";
+        break;
+      case 6:
+        month = "July";
+        break;
+      case 7:
+        month = "Aug";
+        break;
+      case 8:
+        month = "Sep";
+        break;
+      case 9:
+        month = "Oct";
+        break;
+      case 10:
+        month = "Nov";
+        break;
+      case 11:
+        month = "Dec";
+        break;
+      default:
+        console.log("Error");
+    }
+    if (hours > 12) {
+      hours -= 12;
+      ampm = "PM";
+    }
+    return `${month} ${day} ${hours}:${minutes} ${ampm}`;
+  };
+
   return (
     <div>
       <ListGroup.Item
@@ -32,7 +88,9 @@ const RecentGameItem = props => {
                 textAlign: "center",
                 width: 33 + "%"
               }}
-            ></div>
+            >
+              {displayDate(props.date)}
+            </div>
             <div
               style={{
                 display: "inline-block",
