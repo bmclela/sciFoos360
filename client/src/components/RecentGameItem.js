@@ -9,7 +9,10 @@ const RecentGameItem = props => {
     let msec = Date.parse(date);
     date = new Date(msec);
     let monthNumber = date.getMonth();
-    let day = date.getDate();
+    let day = date
+      .getDate()
+      .toString()
+      .padStart(2, "0");
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let month;
