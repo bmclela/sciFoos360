@@ -89,7 +89,7 @@ const RecentGameItem = props => {
                 width: 33 + "%"
               }}
             >
-              {displayDate(props.date)}
+              <div id="gameDate">{displayDate(props.date)}</div>
             </div>
             <div
               style={{

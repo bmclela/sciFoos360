@@ -82,7 +82,8 @@ body {
   }
 
   #winRate,
-  #winLoss {
+  #winLoss,
+  #gameDate {
     display: none;
     visibility: hidden;
     position: absolute;
