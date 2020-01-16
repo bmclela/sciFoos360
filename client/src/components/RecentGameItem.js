@@ -16,7 +16,6 @@ const RecentGameItem = props => {
       .toString()
       .padStart(2, "0");
     let month;
-    let ampm = "AM";
     switch (monthNumber) {
       case 0:
         month = "Jan";
@@ -57,9 +56,9 @@ const RecentGameItem = props => {
       default:
         console.log("Error");
     }
+    let ampm = hours >= 12 ? "PM" : "AM";
     if (hours > 12) {
       hours -= 12;
-      ampm = "PM";
     }
     return `${month} ${day} ${hours}:${minutes} ${ampm}`;
   };
