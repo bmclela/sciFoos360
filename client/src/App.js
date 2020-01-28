@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Players from "./components/Players";
 import Teams from "./components/Teams";
-import Tournament from "./components/Tournament";
+import HallOfFame from "./components/HallOfFame";
 import "./style/style.css";
 
 const App = props => {
@@ -16,6 +16,8 @@ const App = props => {
     props.fetchGames();
     props.fetchTeams();
     props.fetchPlayers();
+    // props.fetchHallOfFameTeams();
+    // props.fetchHallOfFamePlayers();
   });
 
   return (
@@ -33,7 +35,7 @@ const App = props => {
           <Route path="/" exact component={Home} />
           <Route path="/teams" exact component={Teams} />
           <Route path="/players" exact component={Players} />
-          <Route path="/tournament" exact component={Tournament} />
+          <Route path="/hall-of-fame" exact component={HallOfFame} />
         </div>
       </BrowserRouter>
     </div>

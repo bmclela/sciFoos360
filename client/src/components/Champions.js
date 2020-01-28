@@ -1,8 +1,8 @@
-import React from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { connect } from "react-redux";
 
-import ChampionCard from './ChampionCard';
+import LargeBoxDisplay from "./helperComponents/LargeBoxDisplay";
 
 const Champions = props => {
   const displayBestPlayer = () => {
@@ -26,8 +26,8 @@ const Champions = props => {
           );
         }
         return (
-          <ChampionCard
-            type={'#1 Player'}
+          <LargeBoxDisplay
+            title={"#1 Player"}
             name={player.name}
             elo={Math.round(player.elo)}
             winLoss={winLoss}
@@ -56,8 +56,8 @@ const Champions = props => {
           winLoss = Math.round((team.wins / (team.losses + team.wins)) * 100);
         }
         return (
-          <ChampionCard
-            type={'#1 Team'}
+          <LargeBoxDisplay
+            type={"#1 Team"}
             name={team.name}
             elo={Math.round(team.elo)}
             winLoss={winLoss}
@@ -69,8 +69,8 @@ const Champions = props => {
 
   return (
     <div>
-      <div id='champions' style={{ height: 80 }}>
-        <h1 style={{ textAlign: 'center', color: 'white' }}>
+      <div id="champions" style={{ height: 80 }}>
+        <h1 style={{ textAlign: "center", color: "white" }}>
           Current Champions
         </h1>
       </div>

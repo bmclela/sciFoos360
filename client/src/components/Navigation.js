@@ -33,9 +33,9 @@ class Navigation extends React.Component {
               <LinkContainer to="/teams">
                 <Nav.Link>Teams</Nav.Link>
               </LinkContainer>
-              {/* <LinkContainer to="/tournament">
-                <Nav.Link>Tournament</Nav.Link>
-              </LinkContainer> */}
+              <LinkContainer to="/hall-of-fame">
+                <Nav.Link>Hall of Fame</Nav.Link>
+              </LinkContainer>
             </Nav>
             <div>
               <Form inline style={{ float: "left", display: "inline-block" }}>

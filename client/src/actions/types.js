@@ -6,3 +6,5 @@ export const FETCH_TEAMS = "fetch_teams";
 export const ADD_PLAYER = "add_player";
 export const FETCH_PLAYERS = "get_players";
 export const DELETE_GAME = "delete_game";
+export const FETCH_HALLOFFAMEPLAYERS = "fetch_halloffameplayers";
+export const FETCH_HALLOFFAMETEAMS = "fetch_halloffameteams";
