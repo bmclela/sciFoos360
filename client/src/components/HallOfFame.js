@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import HallOfFameMonth from './HallOfFameMonth';
 
 const HallOfFame = props => {
-  const displayHallOfFame = props.players.map((player, index) => {
+  const displayHallOfFame = props.players.reverse().map((player, index) => {
     if (props.teams[0]) {
-      console.log(props.teams[0].losses);
       //if (props.teams[0].losses) {
-      console.log(props.teams[0]);
       const date = new Date(player.date);
       const year = date.getFullYear();
       const monthNumber = date.getMonth();
@@ -85,12 +83,12 @@ const HallOfFame = props => {
         />
       );
       //  } else return;
-    } else return;
+    } else return null;
   });
 
   return (
-    <div style={{ margin: 40, marginBottom: 20 }}>
-      <div id='champions' style={{ height: 80 }}>
+    <div style={{ margin: 40}}>
+      <div id='champions' style={{ height: 60 }}>
         <h1 style={{ textAlign: 'center', color: 'white' }}>Hall of Fame</h1>
       </div>
 

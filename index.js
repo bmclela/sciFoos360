@@ -35,7 +35,7 @@ new CronJob(
   'America/Los_Angeles'
 );
 
-//resetAll.reset();
+resetAll.reset();
 
 let http = require('http');
 setInterval(function() {

@@ -21,7 +21,6 @@ const reset = async () => {
       }
     })
   }
-  console.log(bestPlayer);
 
   const hallOfFamePlayer = new HallOfFamePlayer({
     name: bestPlayer.name,
@@ -44,7 +43,6 @@ const reset = async () => {
       }
     })
   }
-  console.log(bestTeam);
 
   const hallOfFameTeam = new HallOfFameTeam({
     name: bestTeam.name,
