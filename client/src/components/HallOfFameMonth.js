@@ -1,31 +1,33 @@
-import React from "react";
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import LargeBoxDisplay from './helperComponents/LargeBoxDisplay';
 
 const HallOfFameMonth = props => {
   return (
-    <div style={{ margin: 40 }}>
-      <div id="champions" style={{ height: 80 }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>Hall of Fame</h1>
-      </div>
-
+    <div>
+      <h4 style={{ textAlign: 'center', marginBottom: 20, marginTop: 30 }}>
+        {props.month}
+      </h4>
       <Row>
         <Col sm={12} md={6}>
-          <ChampionCard
-            type="Best Player - January 2020"
-            name="This is my name"
-            // name={props.players[1].name}
-            winLoss="C"
-            elo="D"
-          ></ChampionCard>
+          <LargeBoxDisplay
+            title={props.playerTitle}
+            name={props.playerName}
+            percent={props.playerPercent}
+            elo={Math.round(props.playerElo)}
+          ></LargeBoxDisplay>
         </Col>
         <Col sm={12} md={6}>
-          <ChampionCard
-            type="Best Team - January 2020"
-            name="B"
-            winLoss="C"
-            elo="D"
-          ></ChampionCard>
+          <LargeBoxDisplay
+            title={props.teamTitle}
+            name={props.teamName}
+            percent={props.teamPercent}
+            elo={Math.round(props.teamElo)}
+          ></LargeBoxDisplay>
         </Col>
       </Row>
     </div>
   );
 };
+
+export default HallOfFameMonth;

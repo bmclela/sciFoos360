@@ -5,12 +5,12 @@ const LargeBoxDisplay = props => {
   return (
     <Card id="background" style={{ textAlign: "center", marginBottom: 20 }}>
       <Card.Body>
-        <Card.Title style={{ fontSize: 18 }}>{"title"}</Card.Title>
+        <Card.Title style={{ fontSize: 18 }}>{props.title}</Card.Title>
         <hr style={{ backgroundColor: "black" }}></hr>
-        <Card.Text style={{ fontSize: 30 }}>{"name"}</Card.Text>
+        <Card.Text style={{ fontSize: 30 }}>{props.name}</Card.Text>
         <hr style={{ backgroundColor: "black" }}></hr>
         <Card.Text style={{ fontSize: 18 }}>
-          {"elo"} - {"percent"}%
+          {props.elo} - {props.percent}%
         </Card.Text>
       </Card.Body>
     </Card>

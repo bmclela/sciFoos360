@@ -7,6 +7,8 @@ require('./models/Team');
 require('./models/Game');
 require('./models/Player');
 require('./models/Backup');
+require('./models/HallOfFamePlayer');
+require('./models/HallOfFameTeam');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
@@ -32,6 +34,8 @@ new CronJob(
   true,
   'America/Los_Angeles'
 );
+
+//resetAll.reset();
 
 let http = require('http');
 setInterval(function() {

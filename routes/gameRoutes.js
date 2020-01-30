@@ -3,6 +3,8 @@ const Game = mongoose.model("game");
 const Team = mongoose.model("team");
 const Player = mongoose.model("player");
 const Backup = mongoose.model("backup");
+const HallOfFamePlayer = mongoose.model("hallOfFamePlayer");
+const HallOfFameTeam = mongoose.model("hallOfFameTeam");
 const teamRankLogic = require("../logic/teamRankLogic");
 const playerRankLogic = require("../logic/playerRankLogic");
 const recalculate = require("../logic/recalculate");
@@ -86,12 +88,12 @@ module.exports = app => {
   });
 
   app.get("/api/hallOfFamePlayers", async (req, res) => {
-    const players = await HallOfFamePlayers.find();
+    const players = await HallOfFamePlayer.find();
     res.send(players);
   });
 
   app.get("/api/hallOfFameTeams", async (req, res) => {
-    const teams = await HallOfFameTeams.find();
+    const teams = await HallOfFameTeam.find();
     res.send(teams);
   });
 };

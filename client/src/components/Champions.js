@@ -30,7 +30,7 @@ const Champions = props => {
             title={"#1 Player"}
             name={player.name}
             elo={Math.round(player.elo)}
-            winLoss={winLoss}
+            percent={winLoss}
           />
         );
       } else return;
@@ -57,10 +57,10 @@ const Champions = props => {
         }
         return (
           <LargeBoxDisplay
-            type={"#1 Team"}
+            title={"#1 Team"}
             name={team.name}
             elo={Math.round(team.elo)}
-            winLoss={winLoss}
+            percent={winLoss}
           />
         );
       } else return;

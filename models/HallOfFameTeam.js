@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const hallOfFameTeamsSchema = new Schema({
+const hallOfFameTeamSchema = new Schema({
   name: String,
   elo: Number,
   wins: Number,
   losses: Number,
-  date: Date,
-  rank: Number
+  date: Date
 });
 
-mongoose.model("hallOfFameTeams", hallOfFameTeamsSchema);
+mongoose.model("hallOfFameTeam", hallOfFameTeamSchema);

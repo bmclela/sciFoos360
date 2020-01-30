@@ -16,8 +16,8 @@ const App = props => {
     props.fetchGames();
     props.fetchTeams();
     props.fetchPlayers();
-    // props.fetchHallOfFameTeams();
-    // props.fetchHallOfFamePlayers();
+    props.fetchHallOfFameTeams();
+    props.fetchHallOfFamePlayers();
   });
 
   return (
