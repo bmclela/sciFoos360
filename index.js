@@ -35,8 +35,6 @@ new CronJob(
   'America/Los_Angeles'
 );
 
-resetAll.reset();
-
 let http = require('http');
 setInterval(function() {
   http.get('http://scifoos360.herokuapp.com');
