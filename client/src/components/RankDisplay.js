@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import RankListItem from "../components/RankListItem";
+import RankListItem from '../components/RankListItem';
 
 const Opponents = props => {
   const displayOpponents = props.opponent
@@ -20,6 +20,7 @@ const Opponents = props => {
           (opponent.wins / (opponent.losses + opponent.wins)) * 100
         );
       }
+      // winLoss={opponent.wins + " / " + (opponent.losses + opponent.wins)}
       return (
         <RankListItem
           key={opponent._id}
@@ -27,7 +28,7 @@ const Opponents = props => {
           name={opponent.name}
           elo={Math.round(opponent.elo)}
           winPercent={winPercent}
-          winLoss={opponent.wins + " / " + (opponent.losses + opponent.wins)}
+          winLoss={opponent.wins}
         />
       );
     });
@@ -35,66 +36,66 @@ const Opponents = props => {
   return (
     <div
       style={{
-        margin: "40px"
+        margin: '40px'
       }}
     >
       <div>
         <h1
-          style={{ textAlign: "center", color: "white", marginBottom: "50px" }}
+          style={{ textAlign: 'center', color: 'white', marginBottom: '50px' }}
         >
           {props.title} Rankings
         </h1>
       </div>
       <div
         style={{
-          color: "white",
+          color: 'white',
           marginBottom: 10,
-          fontWeight: "bold",
-          paddingLeft: "1.25rem",
-          paddingRight: "1.25rem"
+          fontWeight: 'bold',
+          paddingLeft: '1.25rem',
+          paddingRight: '1.25rem'
         }}
       >
         <div
-          id="rank"
+          id='rank'
           style={{
-            display: "inline-block",
-            textAlign: "center"
+            display: 'inline-block',
+            textAlign: 'center'
           }}
         >
           Rank
         </div>
         <div
-          id="opponent"
+          id='opponent'
           style={{
-            display: "inline-block",
-            textAlign: "center"
+            display: 'inline-block',
+            textAlign: 'center'
           }}
         >
           {props.title}
         </div>
         <div
-          id="elo"
+          id='elo'
           style={{
-            display: "inline-block",
-            textAlign: "center"
+            display: 'inline-block',
+            textAlign: 'center'
           }}
         >
           Elo
         </div>
         <div
-          id="winRate"
+          id='winRate'
           style={{
-            display: "inline-block",
-            textAlign: "center"
+            display: 'inline-block',
+            textAlign: 'center'
           }}
         >
           Win Rate
         </div>
         <div
-          id="winLoss"
+          id='winLoss'
           style={{
-            display: "inline-block",
-            textAlign: "center"
+            display: 'inline-block',
+            textAlign: 'center'
           }}
         >
           Wins
