@@ -91,7 +91,7 @@ const Opponents = props => {
         >
           Win Rate
         </div>
-        <div
+        {/* <div
           id='winLoss'
           style={{
             display: 'inline-block',
@@ -99,7 +99,7 @@ const Opponents = props => {
           }}
         >
           Wins
-        </div>
+        </div> */}
       </div>
       {displayOpponents}
     </div>
