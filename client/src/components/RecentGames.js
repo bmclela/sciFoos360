@@ -5,22 +5,28 @@ import { connect } from 'react-redux';
 import RecentGameItem from './RecentGameItem';
 
 const RecentGames = props => {
+  let count = 0;
   const displayGames = props.games.map(game => {
     const player1 = game.winner1 < game.winner2 ? game.winner1 : game.winner2;
     const player2 = player1 === game.winner1 ? game.winner2 : game.winner1;
     const player3 = game.loser1 < game.loser2 ? game.loser1 : game.loser2;
     const player4 = player3 === game.loser1 ? game.loser2 : game.loser1;
-    return (
-      <RecentGameItem
-        key={game._id}
-        id={game._id}
-        date={game.date}
-        winner1={player1}
-        winner2={player2}
-        loser1={player3}
-        loser2={player4}
-      />
-    );
+    if (count < 10) {
+      count++;
+      return (
+        <RecentGameItem
+          key={game._id}
+          id={game._id}
+          date={game.date}
+          winner1={player1}
+          winner2={player2}
+          loser1={player3}
+          loser2={player4}
+        />
+      );
+    } else {
+      return null;
+    }
   });
 
   return (
