@@ -1,9 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import HallOfFameMonth from './HallOfFameMonth';
+// Harper was here
+
+import React from "react";
+import { connect } from "react-redux";
+import HallOfFameMonth from "./HallOfFameMonth";
 
 const HallOfFame = props => {
-  const displayHallOfFame = props.players.reverse().map((player, index) => {
+  const displayHallOfFame = props.players.map((player, index) => {
     if (props.teams[0]) {
       //if (props.teams[0].losses) {
       const date = new Date(player.date);
@@ -12,43 +14,43 @@ const HallOfFame = props => {
       let month;
       switch (monthNumber) {
         case 0:
-          month = 'January';
+          month = "January";
           break;
         case 1:
-          month = 'February';
+          month = "February";
           break;
         case 2:
-          month = 'March';
+          month = "March";
           break;
         case 3:
-          month = 'April';
+          month = "April";
           break;
         case 4:
-          month = 'May';
+          month = "May";
           break;
         case 5:
-          month = 'June';
+          month = "June";
           break;
         case 6:
-          month = 'July';
+          month = "July";
           break;
         case 7:
-          month = 'August';
+          month = "August";
           break;
         case 8:
-          month = 'September';
+          month = "September";
           break;
         case 9:
-          month = 'October';
+          month = "October";
           break;
         case 10:
-          month = 'November';
+          month = "November";
           break;
         case 11:
-          month = 'December';
+          month = "December";
           break;
         default:
-          console.log('Error');
+          console.log("Error");
       }
       let playerWinPercent = 0;
       if (player.losses === 0) {
@@ -71,12 +73,12 @@ const HallOfFame = props => {
       return (
         <HallOfFameMonth
           key={index}
-          month={month + ' ' + year}
-          playerTitle='#1 Player'
+          month={month + " " + year}
+          playerTitle="#1 Player"
           playerName={player.name}
           playerPercent={playerWinPercent}
           playerElo={player.elo}
-          teamTitle='#1 Team'
+          teamTitle="#1 Team"
           teamName={props.teams[index].name}
           teamPercent={teamWinPercent}
           teamElo={props.teams[index].elo}
@@ -87,9 +89,9 @@ const HallOfFame = props => {
   });
 
   return (
-    <div style={{ margin: 40}}>
-      <div id='champions' style={{ height: 60 }}>
-        <h1 style={{ textAlign: 'center', color: 'white' }}>Hall of Fame</h1>
+    <div style={{ margin: 40 }}>
+      <div id="champions" style={{ height: 60 }}>
+        <h1 style={{ textAlign: "center", color: "white" }}>Hall of Fame</h1>
       </div>
 
       {displayHallOfFame}
