@@ -11,7 +11,7 @@ const RecentGames = props => {
     const player2 = player1 === game.winner1 ? game.winner2 : game.winner1;
     const player3 = game.loser1 < game.loser2 ? game.loser1 : game.loser2;
     const player4 = player3 === game.loser1 ? game.loser2 : game.loser1;
-    if (count < 5) {
+    if (count < 8) {
       count++;
       return (
         <RecentGameItem
